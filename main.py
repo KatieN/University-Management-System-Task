@@ -19,10 +19,10 @@ class Student(Person):
     #Sets all the attributes for this class
     def __init__(self, name, age, gender, student_id, course):
         super().__init__(name, age, gender) #Accesses all the attributes from the 'Person' class
-        #Adds class-specific attributes
         self.student_id = student_id
         self.course = course
         self.grades= []
+        #Adds class-specific attributes
     
     #Allows you to re-write the class-specific attributes for this class
     def set_student_details(self, student_id, course):
@@ -49,38 +49,48 @@ class Student(Person):
     def get_mentor(self):
         try: #Tries to set the 'mentor' variable to an attribute 'self.mentor'
             mentor = self.mentor
-        except AttributeError: #If this attribute doesn't exist, it instead assigns the mentor variable to "No mentor assigned"
+        except AttributeError: #If this attribute doesn't exist, it instead assigns the 'mentor' variable to "No mentor assigned"
             mentor = "No mentor assigned"
         return mentor
 
     
 class Professor(Person):
+    #Sets all the attributes for the class
     def __init__(self, name, age, gender, staff_id, department, salary):
-        super().__init__(name, age, gender)
+        super().__init__(name, age, gender) #Accesses all the attributes from the 'Person' class
         self.staff_id = staff_id
         self.department = department
         self.salary = salary
         self.students = []
+        #Sets the class-specific variables
     
+    #Allows you to change all the class-specific attributes
     def set_professor_details(self, staff_id, department, salary):
         self.staff_id = staff_id
         self.department = department
         self.salary = salary
     
+    #Takes in a 'student' parameter and 'feedback' parameter and creates an output by inserting the student's name attribute (student.name) and the feeedback
     def give_feedback(self, student, feedback):
         print("Feedback for " + student.name + ": " + feedback)
     
+    #Increases the salary by 'X' percentage by multiplying by 1.('X'/100)
     def increase_salary(self, percentage):
         self.salary = self.salary * (1+(percentage/100))
     
+    #Outputs all of the attributes for the Professor class
     def get_professor_summary(self):
         print("Name: " +self.name+ ", Age: " + str(self.age)+ ", Gender: " + self.gender+ ", Staff ID: " + self.staff_id + ", Department: " + self.department + ", Annual Salary: £" + str("{:.2f}".format(self.salary)))
 
+    #Takes in a student parameter to create an output using both the Professor and Student's name ('self.name', 'student.name')
     def mentor_student(self, student):
         print("Professor " + self.name + " is now mentoring Student " + student.name + " on " + student.course)
         self.students.append(student.name)
+        #Adds the student's name to the list of student's they're mentoring
         student.mentor = self.name
+        #Creates an attribute (or alters it if this already exists) that hold's the name of the professor that's mentoring the student
     
+    #Outputs the list of students the Professor is mentoring
     def get_mentored_students(self):
         print(self.students)
 
