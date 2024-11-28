@@ -95,20 +95,24 @@ class Professor(Person):
         print(self.students)
 
 class Administrator(Person):
+    #Sets the attributes for the Administrator Class
     def __init__(self, name, age, gender, admin_id, office, years_of_service):
         super().__init__(name, age, gender)
         self.admin_id = admin_id
         self.office = office
         self.years_of_service = years_of_service
     
+    #Allows you to edit class-specific attributes
     def set_admin_details(self, admin_id, office, years_of_service):
         self.admin_id = admin_id
         self.office = office
         self.years_of_service = years_of_service
     
+    #Adds 1 year to the self.years_of_service attribute
     def increment_service_years(self):
         self.years_of_service += 1
     
+    #Displays all the attributes in a string format
     def get_admin_summary(self):
         print("Name: " +self.name+ ", Age: " + str(self.age)+ ", Gender: " + self.gender + ", Admin ID: " +self.admin_id+ ", Office: " +self.office+ ", Years Of Service: " + str(self.years_of_service))
 
